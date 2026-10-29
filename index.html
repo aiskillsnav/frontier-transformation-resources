@@ -85,13 +85,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 32px 20px;
+        padding: 22px;
         background:
-          radial-gradient(circle at 68% 26%, var(--cp-danger) 0%, transparent 22%),
-          radial-gradient(circle at 77% 38%, var(--cp-success) 0%, transparent 24%),
-          radial-gradient(circle at 61% 60%, var(--cp-link) 0%, transparent 24%),
-          radial-gradient(circle at 79% 70%, var(--cp-warning) 0%, transparent 24%),
-          linear-gradient(135deg, var(--cp-bg-elevated), var(--cp-bg));
+          radial-gradient(circle at 72% 30%, var(--cp-danger) 0%, transparent 18%),
+          radial-gradient(circle at 82% 36%, var(--cp-success) 0%, transparent 20%),
+          radial-gradient(circle at 69% 63%, var(--cp-link) 0%, transparent 20%),
+          radial-gradient(circle at 84% 74%, var(--cp-warning) 0%, transparent 20%),
+          linear-gradient(135deg, var(--cp-bg-elevated), var(--cp-bg-elevated));
       }
 
       .hero::before {
@@ -99,131 +99,183 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(var(--cp-overlay), var(--cp-overlay)),
-          repeating-linear-gradient(
-            90deg,
-            transparent 0,
-            transparent 108px,
-            var(--cp-border) 108px,
-            var(--cp-border) 110px
-          ),
-          repeating-linear-gradient(
-            0deg,
-            transparent 0,
-            transparent 108px,
-            var(--cp-border) 108px,
-            var(--cp-border) 110px
-          );
+          linear-gradient(var(--cp-panel), var(--cp-panel)),
+          radial-gradient(circle at 65% 25%, var(--cp-sheen), transparent 28%),
+          repeating-linear-gradient(90deg, transparent 0, transparent 108px, var(--cp-border) 108px, var(--cp-border) 110px),
+          repeating-linear-gradient(0deg, transparent 0, transparent 108px, var(--cp-border) 108px, var(--cp-border) 110px);
         pointer-events: none;
       }
 
       .panel {
         position: relative;
         width: 100%;
-        max-width: 1120px;
+        max-width: 1300px;
         border: 1px solid var(--cp-border);
-        border-radius: 16px;
+        border-radius: 0.625rem;
         background: var(--cp-panel-strong);
-        box-shadow: var(--cp-shadow);
+        box-shadow: 0 0 2px var(--cp-border), 0 1px 2px var(--cp-border-strong);
         backdrop-filter: blur(2px);
       }
 
       .content {
-        padding: 28px;
-      }
-
-      .badge {
-        display: inline-flex;
-        border: 1px solid var(--cp-border);
-        border-radius: 0.625rem;
-        padding: 6px 10px;
-        background: var(--cp-surface);
-        color: var(--cp-text-soft);
-        font-size: 0.86rem;
-        letter-spacing: 0.02em;
-      }
-
-      h1 {
-        margin: 14px 0 8px;
-        font-size: clamp(2rem, 5vw, 4.5rem);
-        line-height: 1.04;
-      }
-
-      .subtitle {
-        margin: 0 0 22px;
-        color: var(--cp-text-muted);
-        font-size: clamp(1rem, 2vw, 1.4rem);
-      }
-
-      .cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 14px;
+        grid-template-columns: minmax(320px, 1.1fr) minmax(260px, 0.9fr);
+        gap: 24px;
+        padding: 30px 32px 24px;
       }
 
-      .card {
-        border: 1px solid var(--cp-border);
-        background: var(--cp-surface);
-        border-radius: 16px;
-        padding: 18px;
-        box-shadow: 0 0 2px var(--cp-border), 0 1px 2px var(--cp-border-strong);
-      }
-
-      .card h2 {
-        margin: 0 0 8px;
-        font-size: 1.08rem;
-      }
-
-      .card p {
-        margin: 0 0 14px;
-        color: var(--cp-text-muted);
-        line-height: 1.4;
-      }
-
-      .actions {
-        display: flex;
+      .brand {
+        display: inline-flex;
+        align-items: center;
         gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 10px 14px;
-        border-radius: 0.625rem;
-        border: 1px solid var(--cp-accent);
-        background: var(--cp-accent);
-        color: var(--cp-accent-fg);
-        text-decoration: none;
+        color: var(--cp-text-muted);
+        font-size: 1.05rem;
         font-weight: 600;
       }
 
-      .btn:hover,
-      .btn:focus-visible {
-        background: var(--cp-accent-hover);
-        border-color: var(--cp-accent-hover);
+      .logo {
+        display: grid;
+        grid-template-columns: repeat(2, 10px);
+        grid-template-rows: repeat(2, 10px);
+        gap: 2px;
       }
 
-      .btn-secondary {
-        border-color: var(--cp-border);
-        color: var(--cp-text);
+      .logo span:nth-child(1) {
+        background: var(--cp-danger);
+      }
+
+      .logo span:nth-child(2) {
+        background: var(--cp-success);
+      }
+
+      .logo span:nth-child(3) {
+        background: var(--cp-link);
+      }
+
+      .logo span:nth-child(4) {
+        background: var(--cp-warning);
+      }
+
+      .hero-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 560px;
+      }
+
+      .hero-copy {
+        margin-top: 18px;
+      }
+
+      h1 {
+        margin: 16px 0 12px;
+        font-size: clamp(2.5rem, 7vw, 5.8rem);
+        line-height: 0.96;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--cp-text-muted);
+        font-size: clamp(1rem, 1.8vw, 1.34rem);
+        max-width: 32ch;
+      }
+
+      .theme-title {
+        margin: 14px 0 8px;
+        color: var(--cp-accent);
+        font-size: clamp(1.15rem, 1.9vw, 1.55rem);
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .lab {
+        margin-top: 36px;
+        color: var(--cp-text-soft);
+        font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+        line-height: 1.2;
+      }
+
+      .hero-right {
+        display: block;
+        min-height: 100%;
+      }
+
+      .resource-panel {
+        border: 1px solid var(--cp-border);
+        border-radius: 0.625rem;
         background: var(--cp-surface);
+        box-shadow: 0 0 2px var(--cp-border), 0 1px 2px var(--cp-border-strong);
+        padding: 26px;
+        margin-top: 20px;
+        min-height: 540px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
 
-      .btn-secondary:hover,
-      .btn-secondary:focus-visible {
-        background: var(--cp-surface-soft);
+      .resource-panel h2 {
+        margin: 0 0 20px;
+        font-size: clamp(1.7rem, 2.7vw, 2.4rem);
+      }
+
+      .resource-list {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .resource-list li {
+        margin: 0 0 22px;
+        color: var(--cp-text-muted);
+        line-height: 1.4;
+        font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      }
+
+      .resource-list a {
+        color: var(--cp-link);
+        font-weight: 700;
+        font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+        text-decoration: none;
+      }
+
+      .resource-list a:hover,
+      .resource-list a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .resource-meta {
+        color: var(--cp-text-soft);
+        font-size: clamp(1rem, 1.3vw, 1.15rem);
+        margin-top: 8px;
       }
 
       .footer {
         border-top: 1px solid var(--cp-border);
-        padding: 16px 28px 22px;
+        padding: 14px 32px 20px;
         color: var(--cp-text-soft);
         font-size: 0.9rem;
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 960px) {
         .content {
-          padding: 22px 16px;
+          grid-template-columns: 1fr;
+        }
+        .hero-left {
+          min-height: auto;
+        }
+        .resource-panel {
+          margin-top: 0;
+          min-height: auto;
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero {
+          padding: 12px;
+        }
+        .content {
+          padding: 22px 16px 18px;
         }
         .footer {
           padding: 14px 16px 18px;
@@ -235,26 +287,35 @@
     <main class="hero">
       <section class="panel">
         <div class="content">
-          <span class="badge">LAB741 · Frontier Transformation · Leadership Workshop</span>
-          <h1>Session Resources</h1>
-          <p class="subtitle">Use these links to continue your executive AI action path after today’s session.</p>
-          <div class="cards">
-            <article class="card">
-              <h2>AI Skills Navigator</h2>
-              <p>Explore the full skilling catalog and discover role-based learning pathways.</p>
-              <div class="actions">
-                <a class="btn" href="https://aiskillsnavigator.microsoft.com/en-us/playlists/precreated/precreatedplaylist-e3f47951dce339ea250d16bbeed84e2e492958c2fa211cc5e579deadc21ddb53" target="_blank" rel="noopener noreferrer">Open Playlist</a>
-                <a class="btn btn-secondary" href="https://aiskillsnavigator.microsoft.com/" target="_blank" rel="noopener noreferrer">Open ASN Home</a>
+          <section class="hero-left">
+            <div>
+              <div class="brand">
+                <span class="logo" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+                <span>Microsoft</span>
               </div>
-            </article>
-            <article class="card">
-              <h2>Frontier Resources</h2>
-              <p>Access CIE Frontier guidance, materials, and references from the workshop track.</p>
-              <div class="actions">
-                <a class="btn" href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">Open Resources</a>
+              <div class="hero-copy">
+                <h1>Session<br />Resources</h1>
+                <p class="theme-title">From AI ambition to business advantage</p>
+                <p class="subtitle">Continue your executive AI action path with the core resources from this workshop.</p>
+                <p class="lab">LAB741: Frontier Transformation<br />A Leadership Workshop</p>
               </div>
-            </article>
-          </div>
+            </div>
+          </section>
+          <aside class="hero-right">
+            <div class="resource-panel">
+              <h2>Resources</h2>
+              <ul class="resource-list">
+                <li>
+                  <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/precreated/precreatedplaylist-e3f47951dce339ea250d16bbeed84e2e492958c2fa211cc5e579deadc21ddb53" target="_blank" rel="noopener noreferrer">Frontier Transformation Executive Action Playlist</a>
+                  <div class="resource-meta">AI Skills Navigator playlist curated for this workshop.</div>
+                </li>
+                <li>
+                  <a href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources (PDF)</a>
+                  <div class="resource-meta">Companion guide and supporting references.</div>
+                </li>
+              </ul>
+            </div>
+          </aside>
         </div>
         <footer class="footer">Microsoft Ignite · Build momentum with clear decisions, trusted AI, and leadership action.</footer>
       </section>

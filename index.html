@@ -211,12 +211,43 @@
         min-height: 540px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
       }
 
       .resource-panel h2 {
         margin: 0 0 20px;
         font-size: clamp(1.7rem, 2.7vw, 2.4rem);
+      }
+
+      .resource-tabs {
+        display: inline-flex;
+        gap: 8px;
+        margin: 0 0 16px;
+      }
+
+      .resource-tab {
+        border: 1px solid var(--cp-border);
+        background: var(--cp-surface);
+        color: var(--cp-text);
+        border-radius: 0.625rem;
+        padding: 8px 12px;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .resource-tab[aria-selected="true"] {
+        border-color: var(--cp-accent);
+        background: var(--cp-accent-soft);
+        color: var(--cp-accent);
+      }
+
+      .resource-group[hidden] {
+        display: none;
+      }
+
+      .resource-group {
+        min-height: 320px;
       }
 
       .resource-list {
@@ -304,16 +335,36 @@
           <aside class="hero-right">
             <div class="resource-panel">
               <h2>Resources</h2>
-              <ul class="resource-list">
-                <li>
-                  <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/precreated/precreatedplaylist-e3f47951dce339ea250d16bbeed84e2e492958c2fa211cc5e579deadc21ddb53" target="_blank" rel="noopener noreferrer">Frontier Transformation Executive Action Playlist</a>
-                  <div class="resource-meta">AI Skills Navigator playlist curated for this workshop.</div>
-                </li>
-                <li>
-                  <a class="pdf-link" href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources (PDF)</a>
-                  <div class="resource-meta">Companion guide and supporting references.</div>
-                </li>
-              </ul>
+              <div class="resource-tabs" role="tablist" aria-label="Resource groups">
+                <button id="tab-you" class="resource-tab" role="tab" aria-selected="true" aria-controls="panel-you">For you</button>
+                <button id="tab-team" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-team">For your team</button>
+              </div>
+
+              <div id="panel-you" class="resource-group" role="tabpanel" aria-labelledby="tab-you">
+                <ul class="resource-list">
+                  <li>
+                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/precreated/precreatedplaylist-e3f47951dce339ea250d16bbeed84e2e492958c2fa211cc5e579deadc21ddb53" target="_blank" rel="noopener noreferrer">Frontier Transformation Executive Action Playlist</a>
+                    <div class="resource-meta">AI Skills Navigator playlist curated for this workshop.</div>
+                  </li>
+                  <li>
+                    <a class="pdf-link" href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources (PDF)</a>
+                    <div class="resource-meta">Companion guide and supporting references.</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div id="panel-team" class="resource-group" role="tabpanel" aria-labelledby="tab-team" hidden>
+                <ul class="resource-list">
+                  <li>
+                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/featured?roles=it-professional" target="_blank" rel="noopener noreferrer">AI Skills Navigator Featured Playlists: IT Professional</a>
+                    <div class="resource-meta">Browse role-specific featured playlists for IT Pro skilling paths.</div>
+                  </li>
+                  <li>
+                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/featured?roles=business-user" target="_blank" rel="noopener noreferrer">AI Skills Navigator Featured Playlists: Business User</a>
+                    <div class="resource-meta">Browse curated business user playlists focused on practical adoption.</div>
+                  </li>
+                </ul>
+              </div>
             </div>
           </aside>
         </div>
@@ -327,6 +378,22 @@
           window.open(link.href, "_blank", "noopener,noreferrer");
         });
       }
+
+      const tabYou = document.getElementById("tab-you");
+      const tabTeam = document.getElementById("tab-team");
+      const panelYou = document.getElementById("panel-you");
+      const panelTeam = document.getElementById("panel-team");
+
+      function selectTab(target) {
+        const isYou = target === "you";
+        tabYou.setAttribute("aria-selected", String(isYou));
+        tabTeam.setAttribute("aria-selected", String(!isYou));
+        panelYou.hidden = !isYou;
+        panelTeam.hidden = isYou;
+      }
+
+      tabYou.addEventListener("click", () => selectTab("you"));
+      tabTeam.addEventListener("click", () => selectTab("team"));
     </script>
   </body>
 </html>

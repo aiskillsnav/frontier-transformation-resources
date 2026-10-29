@@ -202,10 +202,10 @@
       }
 
       .resource-panel {
-        border: 1px solid var(--cp-border);
+        border: 0;
         border-radius: 0.625rem;
-        background: var(--cp-surface);
-        box-shadow: 0 0 2px var(--cp-border), 0 1px 2px var(--cp-border-strong);
+        background: var(--cp-panel);
+        box-shadow: none;
         padding: 26px;
         margin-top: 20px;
         min-height: 540px;
@@ -310,7 +310,7 @@
                   <div class="resource-meta">AI Skills Navigator playlist curated for this workshop.</div>
                 </li>
                 <li>
-                  <a href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources (PDF)</a>
+                  <a class="pdf-link" href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources (PDF)</a>
                   <div class="resource-meta">Companion guide and supporting references.</div>
                 </li>
               </ul>
@@ -320,5 +320,13 @@
         <footer class="footer">Microsoft Ignite · Build momentum with clear decisions, trusted AI, and leadership action.</footer>
       </section>
     </main>
+    <script>
+      for (const link of document.querySelectorAll(".pdf-link")) {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.open(link.href, "_blank", "noopener,noreferrer");
+        });
+      }
+    </script>
   </body>
 </html>

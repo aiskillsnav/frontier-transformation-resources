@@ -100,15 +100,15 @@
       .panel {
         position: relative;
         width: 100%;
-        max-width: none;
+        max-width: 1400px;
         z-index: 1;
       }
 
       .content {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
+        display: flex;
+        flex-direction: column;
         gap: 22px;
-        padding: 30px 8px 18px 22px;
+        padding: 30px 24px 18px;
       }
 
       .brand {
@@ -212,6 +212,7 @@
         border-radius: 999px;
         padding: 8px 12px;
         font: inherit;
+        font-family: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
         font-weight: 500;
         cursor: pointer;
         backdrop-filter: blur(20px);
@@ -297,14 +298,6 @@
         padding: 14px 32px 20px;
         color: var(--text-muted);
         font-size: 0.82rem;
-      }
-
-      @media (min-width: 1024px) {
-        .content {
-          grid-template-columns: minmax(320px, 45fr) minmax(560px, 55fr);
-          gap: 24px;
-          padding-right: 0;
-        }
       }
 
       @media (max-width: 1100px) {
@@ -398,12 +391,12 @@
                     <div class="resource-meta">AI Skills Navigator playlist curated for this workshop.</div>
                   </li>
                   <li>
-                    <a href="https://aka.ms/Frontier_CIE" target="_blank" rel="noopener noreferrer">Frontier CIE</a>
-                    <div class="resource-meta">Consolidated CIE workshop resource hub.</div>
+                    <a href="https://aka.ms/Frontier_CIE" target="_blank" rel="noopener noreferrer">Build Your 90-day AI Plan</a>
+                    <div class="resource-meta">Define a clear 12-month AI aspiration and turn one initiative into a focused 90-day plan.</div>
                   </li>
                   <li>
-                    <a href="skills/ai-impact-coach-non-cowork.md" target="_blank" rel="noopener noreferrer">AI Impact Coach Skill (Non-Cowork Test Version)</a>
-                    <div class="resource-meta">Tool-free chat-first skill instructions for lab testing (no enterprise data dependencies).</div>
+                    <a href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources</a>
+                    <div class="resource-meta">PDF leadership guide with workshop context and executive action resources.</div>
                   </li>
                 </ul>
               </div>

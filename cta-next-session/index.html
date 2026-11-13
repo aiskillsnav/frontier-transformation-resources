@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontier Transformation | Session Resources</title>
+    <script>
+      (() => {
+        const param = new URLSearchParams(window.location.search).get("scoutTheme");
+        const theme =
+          param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-deep: #060a20;
+        --bg-mid: #0a1640;
+        --bg-glow: #0e2a8a;
+        --text-primary: #ffffff;
+        --text-muted: rgba(255, 255, 255, 0.72);
+        --title-tint: #c9d6ff;
+        --grid-line: rgba(255, 255, 255, 0.04);
+        --glass-fill: rgba(255, 255, 255, 0.04);
+        --glass-fill-active: rgba(255, 255, 255, 0.16);
+        --glass-border: rgba(255, 255, 255, 0.1);
+        --ms-red: #f25022;
+        --ms-green: #7fba00;
+        --ms-blue: #00a4ef;
+        --ms-yellow: #ffb900;
+      }
+
+      html[data-theme="dark"] {
+        color-scheme: dark;
+      }
+
+      html[data-theme="light"] {
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg-deep);
+        color: var(--text-primary);
+        font-family: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        padding: 22px;
+        background:
+          radial-gradient(ellipse at 15% 110%, var(--bg-glow) 0%, var(--bg-mid) 35%, var(--bg-deep) 70%);
+      }
+
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.42;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(90deg, transparent 0, transparent 118px, var(--grid-line) 118px, var(--grid-line) 120px),
+          repeating-linear-gradient(0deg, transparent 0, transparent 118px, var(--grid-line) 118px, var(--grid-line) 120px);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-motif {
+        position: absolute;
+        right: clamp(-34px, 2vw, 22px);
+        top: 72px;
+        width: 288px;
+        height: 288px;
+        pointer-events: none;
+        z-index: 1;
+        filter: blur(70px);
+        opacity: 0.55;
+      }
+
+      .hero-motif::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(var(--ms-red), var(--ms-red)) 0 0 / 140px 140px no-repeat,
+          linear-gradient(var(--ms-green), var(--ms-green)) 148px 0 / 140px 140px no-repeat,
+          linear-gradient(var(--ms-blue), var(--ms-blue)) 0 148px / 140px 140px no-repeat,
+          linear-gradient(var(--ms-yellow), var(--ms-yellow)) 148px 148px / 140px 140px no-repeat;
+      }
+
+      .panel {
+        position: relative;
+        width: 100%;
+        max-width: 1400px;
+        z-index: 2;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+        padding: 30px 24px 18px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+
+      .logo {
+        display: grid;
+        grid-template-columns: repeat(2, 10px);
+        grid-template-rows: repeat(2, 10px);
+        gap: 2px;
+      }
+
+      .logo span:nth-child(1) {
+        background: var(--ms-red);
+      }
+
+      .logo span:nth-child(2) {
+        background: var(--ms-green);
+      }
+
+      .logo span:nth-child(3) {
+        background: var(--ms-blue);
+      }
+
+      .logo span:nth-child(4) {
+        background: var(--ms-yellow);
+      }
+
+      .hero-left {
+        min-height: auto;
+      }
+
+      .hero-copy {
+        margin-top: 14px;
+      }
+
+      h1 {
+        margin: 12px 0 10px;
+        font-size: clamp(3rem, 7vw, 6rem);
+        font-weight: 600;
+        line-height: 1.1;
+        padding-bottom: 0.12em;
+        overflow: visible;
+        letter-spacing: -0.02em;
+        background: linear-gradient(92deg, var(--text-primary) 58%, var(--title-tint) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: clamp(1rem, 1.55vw, 1.2rem);
+        max-width: 66ch;
+      }
+
+      .theme-title {
+        margin: 12px 0 8px;
+        color: var(--text-primary);
+        font-size: clamp(1.35rem, 2.2vw, 2rem);
+        font-weight: 400;
+        line-height: 1.2;
+      }
+
+      .hero-right {
+        display: block;
+      }
+
+      .resource-panel {
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        background: var(--glass-fill);
+        padding: 26px;
+        margin-top: 0;
+        min-height: 720px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        backdrop-filter: blur(20px);
+      }
+
+      .resource-tabs {
+        display: inline-flex;
+        gap: 8px;
+        margin: 0 0 12px;
+        flex-wrap: wrap;
+      }
+
+      .resource-tab {
+        position: relative;
+        border: 1px solid var(--glass-border);
+        background: var(--glass-fill);
+        color: var(--text-primary);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font: inherit;
+        font-family: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+        font-weight: 500;
+        cursor: pointer;
+        backdrop-filter: blur(20px);
+      }
+
+      .resource-tab[aria-selected="true"] {
+        background: var(--glass-fill-active);
+      }
+
+      .resource-tab[aria-selected="true"]::after {
+        content: "";
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 2px;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--ms-red) 0%,
+          var(--ms-green) 33%,
+          var(--ms-blue) 66%,
+          var(--ms-yellow) 100%
+        );
+      }
+
+      .resource-group[hidden] {
+        display: none;
+      }
+
+      .resource-group {
+        min-height: 560px;
+      }
+
+      .form-wrap {
+        border: 1px solid var(--glass-border);
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--glass-fill);
+        backdrop-filter: blur(20px);
+      }
+
+      .form-frame {
+        width: 100%;
+        height: 680px;
+        border: 0;
+        max-width: 100%;
+        max-height: 100vh;
+      }
+
+      .resource-list {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .resource-list li {
+        margin: 0 0 22px;
+        color: var(--text-muted);
+        line-height: 1.4;
+        font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      }
+
+      .resource-list a {
+        color: var(--text-primary);
+        font-weight: 700;
+        font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+        text-decoration: none;
+      }
+
+      .resource-list a:hover,
+      .resource-list a:focus-visible {
+        text-decoration: underline;
+      }
+
+      .resource-meta {
+        color: var(--text-muted);
+        font-size: clamp(1rem, 1.3vw, 1.15rem);
+        margin-top: 8px;
+      }
+
+      .footer {
+        border-top: 1px solid var(--grid-line);
+        padding: 14px 32px 20px;
+        color: var(--text-muted);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 1100px) {
+        .hero-motif {
+          right: -48px;
+          top: 86px;
+        }
+      }
+
+      @media (max-width: 960px) {
+        .hero {
+          padding: 16px;
+        }
+        .hero-motif {
+          width: 220px;
+          height: 220px;
+          right: -74px;
+          top: 112px;
+        }
+        .hero-left {
+          min-height: auto;
+        }
+        .resource-panel {
+          margin-top: 0;
+          min-height: auto;
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-motif {
+          display: none;
+        }
+        .hero {
+          padding: 12px;
+        }
+        .content {
+          padding: 22px 12px 14px;
+        }
+        .footer {
+          padding: 12px 12px 16px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-media {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <video
+          class="hero-video"
+          src="https://eventtools.event.microsoft.com/cdn/Ignite2026/Phase_2_Catalog/Homepage/IgniteFY27_WebHome-18sec-Short-1600x616-v02_Desktop-VP4_Updated_9.17.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto">
+        </video>
+      </div>
+      <div class="hero-motif" aria-hidden="true"></div>
+      <section class="panel">
+        <div class="content">
+          <section class="hero-left">
+            <div>
+              <div class="brand">
+                <span class="logo" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+                <span>Microsoft</span>
+              </div>
+              <div class="hero-copy">
+                <h1>Microsoft Ignite</h1>
+                <p class="theme-title">LAB741: From AI Ambition to Business Advantage</p>
+                <p class="subtitle">Continue your executive AI action path with the core resources from this workshop.</p>
+              </div>
+            </div>
+          </section>
+          <aside class="hero-right">
+            <div class="resource-panel">
+              <div class="resource-tabs" role="tablist" aria-label="Resource groups">
+                <button id="tab-feedback" class="resource-tab" role="tab" aria-selected="true" aria-controls="panel-feedback">Executive landscape survey</button>
+                <button id="tab-you" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-you">For you</button>
+                <button id="tab-team" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-team">For your team</button>
+                <button id="tab-org" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-org">Want to learn more about skilling your org?</button>
+              </div>
+
+              <div id="panel-feedback" class="resource-group" role="tabpanel" aria-labelledby="tab-feedback">
+                <div class="form-wrap">
+                  <iframe
+                    class="form-frame"
+                    src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR50Xuh3clglPicHCwkvIDetUNVRPWTZQVklLV1hDN1dTM1RRRjlVSlNNMi4u&embed=true"
+                    title="Session Feedback Form"
+                    allowfullscreen
+                    webkitallowfullscreen
+                    mozallowfullscreen
+                    msallowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+
+              <div id="panel-you" class="resource-group" role="tabpanel" aria-labelledby="tab-you" hidden>
+                <ul class="resource-list">
+                  <li>
+                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/precreated/precreatedplaylist-e3f47951dce339ea250d16bbeed84e2e492958c2fa211cc5e579deadc21ddb53" target="_blank" rel="noopener noreferrer">Frontier Transformation Executive Action Playlist</a>
+                    <div class="resource-meta">AI Skills Navigator playlist curated for this workshop.</div>
+                  </li>
+                  <li>
+                    <a href="https://aka.ms/Frontier_CIE" target="_blank" rel="noopener noreferrer">Build Your 90-day AI Plan</a>
+                    <div class="resource-meta">Define a clear 12-month AI aspiration and turn one initiative into a focused 90-day plan.</div>
+                  </li>
+                  <li>
+                    <a href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources</a>
+                    <div class="resource-meta">PDF leadership guide with workshop context and executive action resources.</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div id="panel-team" class="resource-group" role="tabpanel" aria-labelledby="tab-team" hidden>
+                <ul class="resource-list">
+                  <li>
+                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/featured?roles=it-professional" target="_blank" rel="noopener noreferrer">AI Skills Navigator Featured Playlists: IT Professional</a>
+                    <div class="resource-meta">Browse role-specific featured playlists for IT Pro skilling paths.</div>
+                  </li>
+                  <li>
+                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/featured?roles=business-user" target="_blank" rel="noopener noreferrer">AI Skills Navigator Featured Playlists: Business User</a>
+                    <div class="resource-meta">Browse curated business user playlists focused on practical adoption.</div>
+                  </li>
+                </ul>
+              </div>
+
+              <div id="panel-org" class="resource-group" role="tabpanel" aria-labelledby="tab-org" hidden>
+                <div class="form-wrap">
+                  <iframe
+                    class="form-frame"
+                    src="about:blank"
+                    data-src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR9L6PUSQxVBDrIFfaRSU4WhUQk5MQ0JFOTQyQ0xGSThGSUdYWEdJOEgyVy4u&embed=true"
+                    title="Organization Skilling Interest Form"
+                    allowfullscreen
+                    webkitallowfullscreen
+                    mozallowfullscreen
+                    msallowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+        <footer class="footer">Microsoft Ignite · Build momentum with clear decisions, trusted AI, and leadership action.</footer>
+      </section>
+    </main>
+    <script>
+      const tabs = [
+        { key: "feedback", tab: document.getElementById("tab-feedback"), panel: document.getElementById("panel-feedback") },
+        { key: "you", tab: document.getElementById("tab-you"), panel: document.getElementById("panel-you") },
+        { key: "team", tab: document.getElementById("tab-team"), panel: document.getElementById("panel-team") },
+        { key: "org", tab: document.getElementById("tab-org"), panel: document.getElementById("panel-org") }
+      ];
+
+      function selectTab(target) {
+        for (const item of tabs) {
+          const selected = item.key === target;
+          item.tab.setAttribute("aria-selected", String(selected));
+          item.panel.hidden = !selected;
+
+          if (selected) {
+            const iframe = item.panel.querySelector("iframe[data-src]");
+            if (iframe && (iframe.getAttribute("src") === "about:blank" || !iframe.getAttribute("src"))) {
+              iframe.setAttribute("src", iframe.dataset.src);
+            }
+          }
+        }
+      }
+
+      for (const item of tabs) {
+        item.tab.addEventListener("click", () => selectTab(item.key));
+      }
+    </script>
+  </body>
+</html>

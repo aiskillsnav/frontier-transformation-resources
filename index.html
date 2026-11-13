@@ -63,6 +63,20 @@
           radial-gradient(ellipse at 15% 110%, var(--bg-glow) 0%, var(--bg-mid) 35%, var(--bg-deep) 70%);
       }
 
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.42;
+      }
+
       .hero::before {
         content: "";
         position: absolute;
@@ -71,7 +85,7 @@
           repeating-linear-gradient(90deg, transparent 0, transparent 118px, var(--grid-line) 118px, var(--grid-line) 120px),
           repeating-linear-gradient(0deg, transparent 0, transparent 118px, var(--grid-line) 118px, var(--grid-line) 120px);
         pointer-events: none;
-        z-index: 0;
+        z-index: 1;
       }
 
       .hero-motif {
@@ -81,7 +95,7 @@
         width: 288px;
         height: 288px;
         pointer-events: none;
-        z-index: 0;
+        z-index: 1;
         filter: blur(70px);
         opacity: 0.55;
       }
@@ -101,7 +115,7 @@
         position: relative;
         width: 100%;
         max-width: 1400px;
-        z-index: 1;
+        z-index: 2;
       }
 
       .content {
@@ -341,10 +355,27 @@
           padding: 12px 12px 16px;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-media {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
     <main class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <video
+          class="hero-video"
+          src="https://eventtools.event.microsoft.com/cdn/Ignite2026/Phase_2_Catalog/Homepage/IgniteFY27_WebHome-18sec-Short-1600x616-v02_Desktop-VP4_Updated_9.17.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto">
+        </video>
+      </div>
       <div class="hero-motif" aria-hidden="true"></div>
       <section class="panel">
         <div class="content">
@@ -367,7 +398,7 @@
                 <button id="tab-feedback" class="resource-tab" role="tab" aria-selected="true" aria-controls="panel-feedback">Executive landscape survey</button>
                 <button id="tab-you" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-you">For you</button>
                 <button id="tab-team" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-team">For your team</button>
-                <button id="tab-org" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-org">For your organization</button>
+                <button id="tab-org" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-org">Want to learn more about skilling your org?</button>
               </div>
 
               <div id="panel-feedback" class="resource-group" role="tabpanel" aria-labelledby="tab-feedback">

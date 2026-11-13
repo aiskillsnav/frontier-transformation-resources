@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Frontier Transformation | Session Resources</title>
+    <title>THR968 | Skill or will? Session Resources</title>
     <script>
       (() => {
         const param = new URLSearchParams(window.location.search).get("scoutTheme");
@@ -387,8 +387,7 @@
               </div>
               <div class="hero-copy">
                 <h1>Microsoft Ignite</h1>
-                <p class="theme-title">LAB741: From AI Ambition to Business Advantage</p>
-                <p class="subtitle">Continue your executive AI action path with the core resources from this workshop.</p>
+                <p class="theme-title">THR968: Skill or will? Diagnose what's stalling AI adoption</p>
               </div>
             </div>
           </section>
@@ -396,9 +395,7 @@
             <div class="resource-panel">
               <div class="resource-tabs" role="tablist" aria-label="Resource groups">
                 <button id="tab-feedback" class="resource-tab" role="tab" aria-selected="true" aria-controls="panel-feedback">Executive landscape survey</button>
-                <button id="tab-you" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-you">For you</button>
-                <button id="tab-team" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-team">For your team</button>
-                <button id="tab-org" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-org">Want to learn more about skilling your org?</button>
+                <button id="tab-resources" class="resource-tab" role="tab" aria-selected="false" aria-controls="panel-resources">Additional Resources</button>
               </div>
 
               <div id="panel-feedback" class="resource-group" role="tabpanel" aria-labelledby="tab-feedback">
@@ -415,49 +412,21 @@
                 </div>
               </div>
 
-              <div id="panel-you" class="resource-group" role="tabpanel" aria-labelledby="tab-you" hidden>
+              <div id="panel-resources" class="resource-group" role="tabpanel" aria-labelledby="tab-resources" hidden>
                 <ul class="resource-list">
                   <li>
-                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/precreated/precreatedplaylist-e3f47951dce339ea250d16bbeed84e2e492958c2fa211cc5e579deadc21ddb53" target="_blank" rel="noopener noreferrer">Frontier Transformation Executive Action Playlist</a>
-                    <div class="resource-meta">AI Skills Navigator playlist curated for this workshop.</div>
+                    <a href="https://aiskillsnavigator.microsoft.com/playlists/precreated/precreatedplaylist-0ba47e4f5a06e928402de56a95c4bb1c16c121c0c98b3e31ea9ac659728d1a53?UTM_Source=AUD&UTM_Medium=Social&UTM_Campaign=CXOIgnite&UTM_Term=Exec&UTM_Content=LiveSessionUTM_Source=AUD&UTM_Medium=Social&UTM_Campaign=CXOIgnite&UTM_Term=Exec&UTM_Content=LiveSession" target="_blank" rel="noopener noreferrer">AI Skills Navigator Playlist: From Insight to Action: The Skill-vs-Will AI Adoption Playbook</a>
+                    <div class="resource-meta">Find learning aligned with the skills your team needs to build and apply.</div>
                   </li>
                   <li>
-                    <a href="https://aka.ms/Frontier_CIE" target="_blank" rel="noopener noreferrer">Build Your 90-day AI Plan</a>
-                    <div class="resource-meta">Define a clear 12-month AI aspiration and turn one initiative into a focused 90-day plan.</div>
+                    <a href="https://techcommunity.microsoft.com/blog/skills-hub-blog/skill-vs-will-what-leaders-must-solve-for-ai-adoption/4553138" target="_blank" rel="noopener noreferrer">Skill vs. will: What leaders must solve for AI adoption</a>
+                    <div class="resource-meta">Microsoft Community Hub Skills Hub blog.</div>
                   </li>
                   <li>
-                    <a href="https://aka.ms/CIE-Frontier-Resources" target="_blank" rel="noopener noreferrer">CIE Frontier Resources</a>
-                    <div class="resource-meta">PDF leadership guide with workshop context and executive action resources.</div>
+                    <a href="https://www.youtube.com/watch?v=bqfJCCZIFck" target="_blank" rel="noopener noreferrer">The AI-Ready Executive</a>
+                    <div class="resource-meta">Ep. 4 with Alan Murray: "Why skepticism isn't always a skill deficit".</div>
                   </li>
                 </ul>
-              </div>
-
-              <div id="panel-team" class="resource-group" role="tabpanel" aria-labelledby="tab-team" hidden>
-                <ul class="resource-list">
-                  <li>
-                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/featured?roles=it-professional" target="_blank" rel="noopener noreferrer">AI Skills Navigator Featured Playlists: IT Professional</a>
-                    <div class="resource-meta">Browse role-specific featured playlists for IT Pro skilling paths.</div>
-                  </li>
-                  <li>
-                    <a href="https://aiskillsnavigator.microsoft.com/en-us/playlists/featured?roles=business-user" target="_blank" rel="noopener noreferrer">AI Skills Navigator Featured Playlists: Business User</a>
-                    <div class="resource-meta">Browse curated business user playlists focused on practical adoption.</div>
-                  </li>
-                </ul>
-              </div>
-
-              <div id="panel-org" class="resource-group" role="tabpanel" aria-labelledby="tab-org" hidden>
-                <div class="form-wrap">
-                  <iframe
-                    class="form-frame"
-                    src="about:blank"
-                    data-src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR9L6PUSQxVBDrIFfaRSU4WhUQk5MQ0JFOTQyQ0xGSThGSUdYWEdJOEgyVy4u&embed=true"
-                    title="Organization Skilling Interest Form"
-                    allowfullscreen
-                    webkitallowfullscreen
-                    mozallowfullscreen
-                    msallowfullscreen>
-                  </iframe>
-                </div>
               </div>
             </div>
           </aside>
@@ -468,9 +437,7 @@
     <script>
       const tabs = [
         { key: "feedback", tab: document.getElementById("tab-feedback"), panel: document.getElementById("panel-feedback") },
-        { key: "you", tab: document.getElementById("tab-you"), panel: document.getElementById("panel-you") },
-        { key: "team", tab: document.getElementById("tab-team"), panel: document.getElementById("panel-team") },
-        { key: "org", tab: document.getElementById("tab-org"), panel: document.getElementById("panel-org") }
+        { key: "resources", tab: document.getElementById("tab-resources"), panel: document.getElementById("panel-resources") }
       ];
 
       function selectTab(target) {
